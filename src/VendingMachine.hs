@@ -11,4 +11,5 @@ data Money = Ten | Fifty | Hundred | FiveHundred | Thousand
 [Hundred,Ten]
 -}
 
+insert :: [Money] -> Money -> [Money]
 insert l m = m:l
