@@ -1,7 +1,11 @@
 module VendingMachine where
 
+import Control.Monad.State
+
 data Money = Ten | Fifty | Hundred | FiveHundred | Thousand
            deriving Show
+
+type MoneyStack = [Money]
 
 moneyToInteger :: Money -> Integer
 moneyToInteger Ten         = 10
@@ -12,14 +16,14 @@ moneyToInteger Thousand    = 1000
 
 {-| function 'insert'
 
->>> insert [] Ten
-[Ten]
->>> insert [Ten] Hundred
-[Hundred,Ten]
+>>> runState (insert Ten) []
+((),[Ten])
+>>> runState (insert Ten >> insert Hundred) []
+((),[Hundred,Ten])
 -}
 
-insert :: [Money] -> Money -> [Money]
-insert l m = m:l
+insert :: Money -> State MoneyStack ()
+insert m = state $ \xs -> ((), m:xs)
 
 {-| function 'sumMoney'
 
@@ -29,3 +33,4 @@ insert l m = m:l
 
 sumMoney :: [Money] -> Integer
 sumMoney = foldl (\s m -> s + moneyToInteger m) 0
+
