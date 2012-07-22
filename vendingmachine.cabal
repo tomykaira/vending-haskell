@@ -1,0 +1,16 @@
+name:              vendingmachine
+build-type:        Custom
+
+library
+  hs-source-dirs:  src
+  ghc-options:     -Wall
+  build-depends:   base
+  exposed-modules: FizzBuzz
+
+test-suite doctests
+  type:            exitcode-stdio-1.0
+  hs-source-dirs:  test
+  main-is:         doctests.hs
+  ghc-options:     -Wall -threaded
+  build-depends:   base,
+                   doctest >= 0.7
