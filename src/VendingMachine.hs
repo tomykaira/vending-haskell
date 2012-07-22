@@ -1,6 +1,7 @@
 module VendingMachine where
 
 data Money = Ten | Fifty | Hundred | FiveHundred | Thousand
+           deriving Show
 
 {-| function 'insert'
 
@@ -8,4 +9,4 @@ data Money = Ten | Fifty | Hundred | FiveHundred | Thousand
 [Ten]
 -}
 
-insert = undefined
+insert l m = m:l
