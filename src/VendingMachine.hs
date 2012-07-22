@@ -7,6 +7,8 @@ data Money = Ten | Fifty | Hundred | FiveHundred | Thousand
 
 >>> insert [] Ten
 [Ten]
+>>> insert [Ten] Hundred
+[Hundred,Ten]
 -}
 
 insert l m = m:l
